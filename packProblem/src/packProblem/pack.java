@@ -2,8 +2,12 @@ package packProblem;
 
 public class pack {
 	private int w, d, h;
+	private int x, y, z;
 
 	public pack(int w, int d, int h) {
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
 		this.w = w;
 		this.d = d;
 		this.h = h;
@@ -56,5 +60,29 @@ public class pack {
 
 	public void setH(int h) {
 		this.h = h;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getZ() {
+		return z;
+	}
+
+	public void setZ(int z) {
+		this.z = z;
 	}
 }
