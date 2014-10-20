@@ -1,16 +1,17 @@
 package packProblem;
 
-public class pack {
+public class pack implements Comparable<pack> {
 	private int w, d, h;
-	private int x, y, z;
+	private int x, y, z,id;
 
-	public pack(int w, int d, int h) {
+	public pack(int w, int d, int h,int id) {
 		this.x = 0;
 		this.y = 0;
 		this.z = 0;
 		this.w = w;
 		this.d = d;
 		this.h = h;
+		this.id=id;
 		makecube();
 	}
 
@@ -66,23 +67,29 @@ public class pack {
 		return x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
-
 	public int getY() {
 		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
 	}
 
 	public int getZ() {
 		return z;
 	}
+	public int getID() {
+		return id;
+	}
 
-	public void setZ(int z) {
-		this.z = z;
+	/*
+	 * public void setX(int x) { this.x = x; } public void setY(int y) { this.y
+	 * = y; } public void setZ(int z) { this.z = z; }
+	 */
+
+	@Override
+	public int compareTo(pack m) {
+		return (this.w > m.w) ? 1 : -1;
+	}
+
+	@Override
+	public String toString() {
+		return "(" + this.x / 100 + " " + this.y / 100 + this.z / 100 + ")";
 	}
 }
