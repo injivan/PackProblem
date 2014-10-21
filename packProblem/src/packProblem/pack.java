@@ -90,6 +90,6 @@ public class pack implements Comparable<pack> {
 
 	@Override
 	public String toString() {
-		return "(" + this.x / 100 + " " + this.y / 100 + this.z / 100 + ")";
+		return "ID = " + this.id + " (" + this.x / 100 + " " + this.y / 100 + " " +  this.z / 100 + ")";
 	}
 }
