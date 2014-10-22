@@ -1,5 +1,7 @@
 package packProblem;
 
+import java.text.DecimalFormat;
+
 /**
  * @author XPMUser
  *
@@ -108,39 +110,53 @@ public class pack implements Comparable<pack> {
 			s1.append( printPoint(i));
 			if (i<8) s1.append(" ");
 		}
-		s1.append("\n");
+		//s1.append("\n");
 		return s1.toString();
 	}
 	
-	private String printPoint(int n){
-		int w1=this.w, h1=this.h, d1=this.d;
+	private String printPoint(int n) {
+		int w1 = this.w, h1 = this.h, d1 = this.d;
 		switch (n) {
 		case 1:
-			h1=0;w1=0;d1=0;
+			h1 = 0;
+			w1 = 0;
+			d1 = 0;
 			break;
 		case 2:
-			h1=0;d1=0;
+			h1 = 0;
+			d1 = 0;
 			break;
 		case 3:
-			h1=0;
+			h1 = 0;
 			break;
 		case 4:
-			h1=0;w1=0;
+			h1 = 0;
+			w1 = 0;
 			break;
 		case 5:
-			w1=0;d1=0;
+			w1 = 0;
+			d1 = 0;
 			break;
 		case 6:
-			d1=0;
+			d1 = 0;
 			break;
 		case 7:
-			break;	
+			break;
 		case 8:
-			w1=0;
+			w1 = 0;
 			break;
 		default:
 			break;
 		}
-		return  "(" + (this.x+w1) / 100 + " " + (this.y+d1) / 100 + " " +  (this.z+h1) / 100 + ")";
+		return "(" + formatMe((double)(this.x + w1) / 100) + " "
+				+ formatMe((double)(this.y + d1) / 100) + " "
+				+ formatMe((double)(this.z + h1) / 100) + ")";
+	}
+	private String formatMe(double d1){
+		//DecimalFormat decimalFormat = new DecimalFormat("0.00", decimalFormatSymbols);
+		DecimalFormat a= new DecimalFormat("0.00");
+		return a.format(d1);  
+
+		//return System.out.format("%.2f%n", d1);
 	}
 }

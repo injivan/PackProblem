@@ -2,7 +2,6 @@ package packProblem;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -20,20 +19,34 @@ public class packit {
 			while ((sOut = br.readLine()) != null)  {
 				readLine(sOut);
 			}
-			multiCube m = new multiCube( 4000, 4000, 4000,0); 
-			if (m.add(myPacks.get(0))==true){
-				 m.add(myPacks.get(1));
-			}
-			System.out.println( m.toString());
+			algorithm0();
+			// 1 algorithm 1 
 			
+			
+			printOut();
 			System.out.println("ok");
 	     } catch (IOException e) {
 	    	 System.out.println("Error");
 		} 
-	      
+	}
+	private static void algorithm0(){
+		multiCube m = new multiCube( 4000, 4000, 4000,0); 
+		if (m.add(myPacks.get(0))==true){
+			 m.add(myPacks.get(1));
+		}
+		
+	}
+	private static void algorithm1(){
+		
 	}
 
-	private static void readLine(String myLine) {		 
+	private static void printOut(){
+		for (int i=0; i<myPacks.size();i++){
+			pack p= myPacks.get(i);
+			System.out.println( p.toString());
+		}
+	}
+	private static void readLine(String myLine) throws IOException {		 
 		String[] aS = myLine.split("[ ]");
 		int id = Integer.parseInt(aS[0]);
 		int d = (int) (Double.parseDouble(aS[1]) * 100);
