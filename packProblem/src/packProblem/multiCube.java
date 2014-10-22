@@ -101,7 +101,7 @@ public class multiCube extends pack {
 		for (int i = 0; i < myPacks.size(); i++) {
 			pack p = myPacks.get(i);
 			s1.append(p.toString());
-			if (i < myPacks.size())
+			if (i < myPacks.size()-1)
 				s1.append(" ");
 		}
 

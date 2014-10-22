@@ -103,6 +103,44 @@ public class pack implements Comparable<pack> {
 
 	@Override
 	public String toString() {
-		return "ID = " + this.id + " (" + this.x / 100 + " " + this.y / 100 + " " +  this.z / 100 + ")";
+		StringBuffer s1 = new StringBuffer();
+		for(int i=1;i<9;i++){
+			s1.append( printPoint(i));
+			if (i<8) s1.append(" ");
+		}
+		s1.append("\n");
+		return s1.toString();
+	}
+	
+	private String printPoint(int n){
+		int w1=this.w, h1=this.h, d1=this.d;
+		switch (n) {
+		case 1:
+			h1=0;w1=0;d1=0;
+			break;
+		case 2:
+			h1=0;d1=0;
+			break;
+		case 3:
+			h1=0;
+			break;
+		case 4:
+			h1=0;w1=0;
+			break;
+		case 5:
+			w1=0;d1=0;
+			break;
+		case 6:
+			d1=0;
+			break;
+		case 7:
+			break;	
+		case 8:
+			w1=0;
+			break;
+		default:
+			break;
+		}
+		return  "(" + (this.x+w1) / 100 + " " + (this.y+d1) / 100 + " " +  (this.z+h1) / 100 + ")";
 	}
 }
