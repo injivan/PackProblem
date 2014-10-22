@@ -21,7 +21,7 @@ public class packit {
 			}
 			algorithm0();
 			// 1 algorithm 1 
-			
+			algorithm1();
 			
 			printOut();
 			System.out.println("ok");
@@ -37,7 +37,7 @@ public class packit {
 		
 	}
 	private static void algorithm1(){
-		
+	
 	}
 
 	private static void printOut(){
@@ -46,12 +46,30 @@ public class packit {
 			System.out.println( p.toString());
 		}
 	}
-	private static void readLine(String myLine) throws IOException {		 
+
+	private static void readLine(String myLine) throws IOException {
+		int id,d,w,h;
 		String[] aS = myLine.split("[ ]");
-		int id = Integer.parseInt(aS[0]);
-		int d = (int) (Double.parseDouble(aS[1]) * 100);
-		int w = (int) (Double.parseDouble(aS[2]) * 100);
-		int h = (int) (Double.parseDouble(aS[3]) * 100);
+		try {
+			id = Integer.parseInt(aS[0]);
+		} catch (Exception e) {
+			throw new IOException();
+		}
+		try {
+			d = (int) (Double.parseDouble(aS[1]) * 100);
+		} catch (Exception e) {
+			throw new IOException();
+		}
+		try {
+			w = (int) (Double.parseDouble(aS[2]) * 100);
+		} catch (Exception e) {
+			throw new IOException();
+		}
+		try {
+			h = (int) (Double.parseDouble(aS[3]) * 100);
+		} catch (Exception e) {
+			throw new IOException();
+		}
 		myPacks.add(new pack(w, d, h, id));
 	}
 
