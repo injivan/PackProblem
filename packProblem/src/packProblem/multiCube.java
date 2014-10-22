@@ -20,15 +20,79 @@ public class multiCube extends pack {
 			c = p1.getW();
 		}
 
-		a = (a > p.getH()) ? a : p.getH();
-		b = (b > p.getD()) ? b : p.getD();
-		c = c + p.getW();
-		if ((a <= this.getH()) && (b <= this.getD()) && (c <= this.getW())) {
+		int d = findMinVChose(a, b, c, p);
+		if (d > 0) {
+			if (d == 1) {
+				a = 0;
+				b = 0;
+			}
+			if (d == 2) {
+				a = 0;
+				c = 0;
+			}
+			if (d == 3) {
+				b = 0;
+				c = 0;
+			}
+			p.setX(c);
+			p.setY(b);
+			p.setZ(a);
 			myPacks.add(p);
 			return true;
 		} else {
 			return false;
 		}
+
+	}
+
+	private int findMinVChose(int a, int b, int c, pack p2) {
+		// make max weight
+		int w, d, h, chose = 0;
+		double d1, ob1 = Double.MAX_VALUE; 
+		 
+		h = (a > p2.getH()) ? a : p2.getH();
+		d = (b > p2.getD()) ? b : p2.getD();
+		w = c + p2.getW();
+		d1 = calcObem(w, d, h);
+		if (d1 > 0) {
+			if (d1 < ob1) {
+				ob1 = d1;
+				chose = 1;
+			}
+		}
+
+		h = (a > p2.getH()) ? a : p2.getH();
+		d = b + p2.getD();
+		w = (c > p2.getW()) ? c : p2.getW();
+		d1 = calcObem(w, d, h);
+		if (d1 > 0) {
+			if (d1 < ob1) {
+				ob1 = d1;
+				chose = 2;
+			}
+		}
+
+		h = a + p2.getH();
+		d = (b > p2.getD()) ? b : p2.getD();
+		w = (c > p2.getW()) ? c : p2.getW();
+		d1 = calcObem(w, d, h);
+		if (d1 > 0) {
+			if (d1 < ob1) {
+				ob1 = d1;
+				chose = 3;
+			}
+		}
+		return chose;
+	}
+
+	 
+
+	private double calcObem(int w, int d, int h) {
+		double a = 0;
+		if ((h <= this.getH()) && (d <= this.getD()) && (w <= this.getW())) {
+			a =(double) w * d * h;
+		}
+		return a;
 	}
 
 	@Override

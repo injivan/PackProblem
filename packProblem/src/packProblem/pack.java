@@ -1,5 +1,9 @@
 package packProblem;
 
+/**
+ * @author XPMUser
+ *
+ */
 public class pack implements Comparable<pack> {
 	private int w, d, h;
 	private int x, y, z,id;
@@ -63,25 +67,34 @@ public class pack implements Comparable<pack> {
 		this.h = h;
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public int getZ() {
-		return z;
-	}
+//	public int getX() {
+//		return x;
+//	}
+//
+//	public int getY() {
+//		return y;
+//	}
+//
+//	public int getZ() {
+//		return z;
+//	}
 	public int getID() {
 		return id;
 	}
+	public int getV() {
+		return w*d*h;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
 
-	/*
-	 * public void setX(int x) { this.x = x; } public void setY(int y) { this.y
-	 * = y; } public void setZ(int z) { this.z = z; }
-	 */
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public void setZ(int z) {
+		this.z = z;
+	}
 
 	@Override
 	public int compareTo(pack m) {
