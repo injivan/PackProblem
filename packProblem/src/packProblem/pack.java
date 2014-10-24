@@ -7,13 +7,11 @@ import java.text.DecimalFormat;
  *
  */
 public class pack implements Comparable<pack> {
-	private int w, d, h;
-	private int x, y, z,id;
+	private int w, d, h, id;
+	private point myPoint;
 
 	public pack(int w, int d, int h,int id) {
-		this.x = 0;
-		this.y = 0;
-		this.z = 0;
+		myPoint = new point(0, 0, 0);
 		this.w = w;
 		this.d = d;
 		this.h = h;
@@ -87,15 +85,15 @@ public class pack implements Comparable<pack> {
 		return w*d*h;
 	}
 	public void setX(int x) {
-		this.x = x;
+		this.myPoint.x = x;
 	}
 
 	public void setY(int y) {
-		this.y = y;
+		this.myPoint.y = y;
 	}
 
 	public void setZ(int z) {
-		this.z = z;
+		this.myPoint.z = z;
 	}
 
 	@Override
@@ -148,9 +146,9 @@ public class pack implements Comparable<pack> {
 		default:
 			break;
 		}
-		return "(" + formatMe((double)(this.x + w1) / 100) + " "
-				+ formatMe((double)(this.y + d1) / 100) + " "
-				+ formatMe((double)(this.z + h1) / 100) + ")";
+		return "(" + formatMe((double)(this.myPoint.x + w1) / 100) + " "
+				+ formatMe((double)(this.myPoint.y + d1) / 100) + " "
+				+ formatMe((double)(this.myPoint.z + h1) / 100) + ")";
 	}
 	private String formatMe(double d1){
 		//DecimalFormat decimalFormat = new DecimalFormat("0.00", decimalFormatSymbols);

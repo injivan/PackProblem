@@ -19,7 +19,7 @@ public class packit {
 			while ((sOut = br.readLine()) != null)  {
 				readLine(sOut);
 			}
-			algorithm0();
+			//algorithm0();
 			// 1 algorithm 1 
 			algorithm1();
 			
@@ -37,7 +37,15 @@ public class packit {
 		
 	}
 	private static void algorithm1(){
-	
+		ArrayList<Integer> ar1=new ArrayList<Integer>();
+		//for (int i = 0; i < 10; i++) {
+			ar1.add(10);			
+		//} 
+		do {
+			int dd=ar1.get(0);
+			ar1.remove(0);
+			System.out.println(" " + dd );
+		} while (ar1.size()>0);
 	}
 
 	private static void printOut(){
