@@ -71,7 +71,8 @@ public class emptySpace {
 		if (point.x + packToAdd.getW() <= myDims.x) {
 			if (point.y + packToAdd.getD() <= myDims.y) {
 				if (point.z + packToAdd.getH() <= myDims.z) {
-					return 1;===
+					copyAllData(newSpase);
+					return 1;
 				}
 			}
 		}

@@ -29,9 +29,10 @@ public class alg1 {
 		}
 		// emptySpace sp1 = new emptySpace( packsID, x, y, z, w, h, d)
 		esp1 = new emptySpace(0, 0, 0, w, h, d);
-		if (esp1.canAddPack(0, first)==1)  {
-			esp1.AddPackHere(0, first, esp2);
+		if (esp1.AddPackHere(0, first, esp2)==1){
+			
 		}
+		
 	}
 
 	private pack findMax_XY(Boolean fX) {
