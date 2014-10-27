@@ -10,13 +10,13 @@ public class emptySpace {
 	private ArrayList<pack> myPacks = new ArrayList<pack>();
 	private ArrayList<point> myFreePoints = new ArrayList<point>();
 
-	public emptySpace(int[] packsID, int x, int y, int z, int w, int h, int d) {
+	public emptySpace( int x, int y, int z, int w, int h, int d) {
 		super();
 		// setup dimensions of the box
 		myPoint = new point(x, y, z);
 		myDims = new point(w, d, h);
 		myFreePoints.add(new point(0, 0, 0));
-		makeArrayPacks(packsID);
+		 
 	}
 
 	public int canAddPack(int pointNom, pack packToAdd) {
@@ -71,14 +71,14 @@ public class emptySpace {
 		if (point.x + packToAdd.getW() <= myDims.x) {
 			if (point.y + packToAdd.getD() <= myDims.y) {
 				if (point.z + packToAdd.getH() <= myDims.z) {
-					return 1;
+					return 1;===
 				}
 			}
 		}
 		return 0;
 	}
 
-	private void makeArrayPacks(int[] packs) {
+	public void makeArrayPacks(int[] packs) {
 		packsID = new int[packs.length];
 		for (int i = 0; i < packs.length; i++) {
 			packsID[i] = packs[i];

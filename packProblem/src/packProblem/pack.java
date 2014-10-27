@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 public class pack implements Comparable<pack> {
 	private int w, d, h, id;
 	private point myPoint;
+	private int poz;//1,2,3
 
 	public pack(int w, int d, int h,int id) {
 		myPoint = new point(0, 0, 0);
@@ -20,12 +21,12 @@ public class pack implements Comparable<pack> {
 	}
 
 	private void makecube() {
-		if (w < d)
-			rotateRight(w, d);
-		if (w < h)
-			pushRight(w, h);
-		if (d < h)
-			pushUp(d, h);
+		if (w < d){
+			rotateRight(w, d);}
+		if (w < h){
+			pushRight(w, h);}
+		if (d < h){
+			pushUp(d, h);}
 	}
 
 	private void rotateRight(int a, int b) {
