@@ -1,79 +1,76 @@
 package packProblem;
 
+//import java.awt.Point;
 import java.util.ArrayList;
 
 public class multiCube extends pack {
 
-	private int[] packsID;
-	//private point myDims;
-	private point myPoint;
+	private double V1 = 0;// clear V
+	private int w1 = 0, h1 = 0, d1 = 0;
+
+	private ArrayList<Integer> packsID = new ArrayList<Integer>();
+	// private point myDims;
+	//private point myPoint;
 	private ArrayList<pack> myPacks = new ArrayList<pack>();
 	private ArrayList<point> myFreePoints = new ArrayList<point>();
 
 	public multiCube(int w, int d, int h, int id) {
 		super(w, d, h, id);
+		w1 = w;
+		d1 = d;
+		h1 = h;
 		myFreePoints.add(new point(0, 0, 0));
 	}
 
-	public boolean add(pack p, int pointId) {
-		int a = 0, b = 0, c = 0;
+	public void add(pack p, int pointId) {
+
 		point point = myFreePoints.get(pointId);
-		if (point.x + p.getW() <=) {
-			if (point.y + p.getD() <= myDims.y) {
-				if (point.z + p.getH() <= myDims.z) {
-					copyAllData(newSpase);
-					return 1;
+		myFreePoints.remove(pointId);
+		if (point.x + p.getW() <= this.getW()) {
+			if (point.y + p.getD() <= this.getD()) {
+				if (point.z + p.getH() <= this.getH()) {
+					// add the pack
+					myPacks.add(p);
+					// packsID.add(p.getID());
+
+					// add the new free points
+					point point1 = new point(0, 0, 0);
+					point1.x = point.x + p.getW();
+					point1.y = point.y;
+					point1.z = point.z;
+					myFreePoints.add(point1);
+					point1.x = point.x + p.getW();
+					point1.y = point.y + p.getD();
+					point1.z = point.z;
+					myFreePoints.add(point1);
+					point1.x = point.x;
+					point1.y = point.y + p.getD();
+					point1.z = point.z;
+					myFreePoints.add(point1);
+
+					// new obem V1
+					V1 = V1 + p.getV();
+					// new w d and h
+					if ((point.x + p.getW()) > w1)
+						w1 = (point.x + p.getW());
+					if ((point.y + p.getD()) > d1)
+						d1 = (point.y + p.getD());
+
 				}
 			}
 		}
-		
-		if (myPacks.size() > 0) {
-			pack p1 = myPacks.get(0);
-			a = p1.getH();
-			b = p1.getD();
-			c = p1.getW();
-		}
-
-		int d = findMinVChose(a, b, c, p);
-		if (d > 0) {
-			if (d == 1) {
-				a = 0;
-				b = 0;
-			}
-			if (d == 2) {
-				a = 0;
-				c = 0;
-			}
-			if (d == 3) {
-				b = 0;
-				c = 0;
-			}
-			p.setX(c);
-			p.setY(b);
-			p.setZ(a);
-			myPacks.add(p);
-			return true;
-		} else {
-			return false;
-		}
 
 	}
-
-	private double calcObem(int w, int d, int h) {
-		double a = 0;
-		if ((h <= this.getH()) && (d <= this.getD()) && (w <= this.getW())) {
-			a =(double) w * d * h;
-		}
-		return a;
+	public ArrayList<point> getFreePoints(){
+		return myFreePoints;
 	}
-
 	@Override
 	public String toString() {
 		StringBuffer s1 = new StringBuffer();
 		for (int i = 0; i < myPacks.size(); i++) {
 			pack p = myPacks.get(i);
 			s1.append(p.toString());
-			if (i < myPacks.size()-1)
+			if (i < myPacks.size() - 1)
 				s1.append(" ");
 		}
 

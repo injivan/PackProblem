@@ -91,8 +91,8 @@ public class pack implements Comparable<pack> {
 	public int getID() {
 		return id;
 	}
-	public int getV() {
-		return w*d*h;
+	public double getV() {
+		return (w*d*h);
 	}
 	public void setX(int x) {
 		this.myPoint.x = x;
@@ -105,8 +105,7 @@ public class pack implements Comparable<pack> {
 	public void setZ(int z) {
 		this.myPoint.z = z;
 	}
-
-	@Override
+    @Override
 	public int compareTo(pack m) {
 		return (this.w > m.w) ? 1 : -1;
 	}

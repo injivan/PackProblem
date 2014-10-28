@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 
 public class alg1 {
 	private ArrayList<pack> packs;
-	private PriorityQueue<emptySpace> queue = new PriorityQueue<emptySpace>();
+	private PriorityQueue<multiCube> queMC = new PriorityQueue<multiCube>();
 	/*
 	 * make empty pag x,y z
 	 * put max_X element in it
@@ -16,7 +16,7 @@ public class alg1 {
 	public alg1(ArrayList<pack> el) {
 		int w = 0, d = 0, h = 0;
 		pack first;
-		emptySpace esp1, esp2 = null;
+		multiCube mk1; 
 		packs = el;
 		first = findMax_XY(false);
 		if (first != null) {
@@ -28,10 +28,16 @@ public class alg1 {
 			h = first.getH();
 		}
 		// emptySpace sp1 = new emptySpace( packsID, x, y, z, w, h, d)
-		esp1 = new emptySpace(0, 0, 0, w, h, d);
-		if (esp1.AddPackHere(0, first, esp2)==1){
-			
-		}
+		mk1 = new multiCube( w, d, h, 0);
+		mk1.add(first, 0);
+		queMC.add(mk1);		
+		do{
+			// wzemam  mowite to`ki za dostyp 
+			// probwam da dobawqm paketi
+			//kogato we`e nemo[e da se dobawqt paketi
+			//trebwa da izbera nowi now kub
+		}while (true);
+		
 		
 	}
 

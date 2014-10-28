@@ -30,10 +30,10 @@ public class packit {
 		} 
 	}
 	private static void algorithm0(){
-		multiCube m = new multiCube( 4000, 4000, 4000,0); 
-		if (m.add(myPacks.get(0))==true){
-			 m.add(myPacks.get(1));
-		}
+//		multiCube m = new multiCube( 4000, 4000, 4000,0); 
+//		if (m.add(myPacks.get(0))==true){
+//			 m.add(myPacks.get(1));
+//		}
 		
 	}
 	private static void algorithm1(){
