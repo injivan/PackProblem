@@ -9,7 +9,9 @@ import java.text.DecimalFormat;
 public class pack implements Comparable<pack> {
 	private int w, d, h, id;
 	private point myPoint;
-	private int poz;//1,2,3
+	private int poz;//001 0x1 rotateRight
+					//010 0x2 pushRight
+					//100 0x4 pushUp
 
 	public pack(int w, int d, int h,int id) {
 		myPoint = new point(0, 0, 0);
@@ -21,12 +23,19 @@ public class pack implements Comparable<pack> {
 	}
 
 	private void makecube() {
-		if (w < d){
-			rotateRight(w, d);}
-		if (w < h){
-			pushRight(w, h);}
-		if (d < h){
-			pushUp(d, h);}
+		poz = 0;
+		if (w < d) {
+			rotateRight(w, d);
+			poz = poz | 0x1;
+		}
+		if (w < h) {
+			pushRight(w, h);
+			poz = poz | 0x2;
+		}
+		if (d < h) {
+			pushUp(d, h);
+			poz = poz | 0x4;
+		}
 	}
 
 	private void rotateRight(int a, int b) {
@@ -115,6 +124,9 @@ public class pack implements Comparable<pack> {
 	
 	private String printPoint(int n) {
 		int w1 = this.w, h1 = this.h, d1 = this.d;
+		if ((poz & 0x1)>0){d1=this.w;w1=this.d;}
+		if ((poz & 0x2)>0){h1=this.w;w1=this.h;}
+		if ((poz & 0x4)>0){h1=this.d;d1=this.h;}
 		switch (n) {
 		case 1:
 			h1 = 0;

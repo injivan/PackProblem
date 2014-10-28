@@ -4,15 +4,29 @@ import java.util.ArrayList;
 
 public class multiCube extends pack {
 
+	private int[] packsID;
+	//private point myDims;
+	private point myPoint;
 	private ArrayList<pack> myPacks = new ArrayList<pack>();
+	private ArrayList<point> myFreePoints = new ArrayList<point>();
 
 	public multiCube(int w, int d, int h, int id) {
 		super(w, d, h, id);
+		myFreePoints.add(new point(0, 0, 0));
 	}
 
-	public boolean add(pack p) {
+	public boolean add(pack p, int pointId) {
 		int a = 0, b = 0, c = 0;
-
+		point point = myFreePoints.get(pointId);
+		if (point.x + p.getW() <=) {
+			if (point.y + p.getD() <= myDims.y) {
+				if (point.z + p.getH() <= myDims.z) {
+					copyAllData(newSpase);
+					return 1;
+				}
+			}
+		}
+		
 		if (myPacks.size() > 0) {
 			pack p1 = myPacks.get(0);
 			a = p1.getH();
@@ -44,48 +58,6 @@ public class multiCube extends pack {
 		}
 
 	}
-
-	private int findMinVChose(int a, int b, int c, pack p2) {
-		// make max weight
-		int w, d, h, chose = 0;
-		double d1, ob1 = Double.MAX_VALUE; 
-		 
-		h = (a > p2.getH()) ? a : p2.getH();
-		d = (b > p2.getD()) ? b : p2.getD();
-		w = c + p2.getW();
-		d1 = calcObem(w, d, h);
-		if (d1 > 0) {
-			if (d1 < ob1) {
-				ob1 = d1;
-				chose = 1;
-			}
-		}
-
-		h = (a > p2.getH()) ? a : p2.getH();
-		d = b + p2.getD();
-		w = (c > p2.getW()) ? c : p2.getW();
-		d1 = calcObem(w, d, h);
-		if (d1 > 0) {
-			if (d1 < ob1) {
-				ob1 = d1;
-				chose = 2;
-			}
-		}
-
-		h = a + p2.getH();
-		d = (b > p2.getD()) ? b : p2.getD();
-		w = (c > p2.getW()) ? c : p2.getW();
-		d1 = calcObem(w, d, h);
-		if (d1 > 0) {
-			if (d1 < ob1) {
-				ob1 = d1;
-				chose = 3;
-			}
-		}
-		return chose;
-	}
-
-	 
 
 	private double calcObem(int w, int d, int h) {
 		double a = 0;
