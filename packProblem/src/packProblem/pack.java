@@ -4,21 +4,21 @@ import java.text.DecimalFormat;
 
 /**
  * @author XPMUser
- *
+ * 
  */
-public class pack implements Comparable<pack> {
+public class pack {
 	private int w, d, h, id;
 	private point myPoint;
-	private int poz;//001 0x1 rotateRight
-					//010 0x2 pushRight
-					//100 0x4 pushUp
+	private int poz;// 001 0x1 rotateRight
+					// 010 0x2 pushRight
+					// 100 0x4 pushUp
 
-	public pack(int w, int d, int h,int id) {
+	public pack(int w, int d, int h, int id) {
 		myPoint = new point(0, 0, 0);
 		this.w = w;
 		this.d = d;
 		this.h = h;
-		this.id=id;
+		this.id = id;
 		makecube();
 	}
 
@@ -26,29 +26,43 @@ public class pack implements Comparable<pack> {
 		poz = 0;
 		if (w < d) {
 			rotateRight(w, d);
-			poz = poz | 0x1;
 		}
 		if (w < h) {
 			pushRight(w, h);
-			poz = poz | 0x2;
 		}
 		if (d < h) {
 			pushUp(d, h);
-			poz = poz | 0x4;
 		}
 	}
-
+	public pack getNewPack() {
+		pack p = new pack(w, d, h, id);		
+		p.myPoint.x = this.myPoint.x;
+		p.myPoint.y = this.myPoint.y;
+		p.myPoint.z = this.myPoint.z;
+		p.poz = this.poz;
+		return p;
+	}
 	private void rotateRight(int a, int b) {
+		poz = poz ^ 0x1;
+		if (a < b)
+			poz = poz | 0x1;
 		d = a;
 		w = b;
 	}
 
 	private void pushRight(int a, int b) {
+		poz = poz ^ 0x2;
+		if (a < b)
+			poz = poz | 0x2;
 		h = a;
 		w = b;
+
 	}
 
 	private void pushUp(int a, int b) {
+		poz = poz ^ 0x4;
+		if (a < b)
+			poz = poz | 0x4;
 		h = a;
 		d = b;
 	}
@@ -77,23 +91,25 @@ public class pack implements Comparable<pack> {
 		this.h = h;
 	}
 
-//	public int getX() {
-//		return x;
-//	}
-//
-//	public int getY() {
-//		return y;
-//	}
-//
-//	public int getZ() {
-//		return z;
-//	}
+	// public int getX() {
+	// return x;
+	// }
+	//
+	// public int getY() {
+	// return y;
+	// }
+	//
+	// public int getZ() {
+	// return z;
+	// }
 	public int getID() {
 		return id;
 	}
+
 	public double getV() {
-		return (w*d*h);
+		return (w * d * h);
 	}
+
 	public void setX(int x) {
 		this.myPoint.x = x;
 	}
@@ -105,27 +121,40 @@ public class pack implements Comparable<pack> {
 	public void setZ(int z) {
 		this.myPoint.z = z;
 	}
-    @Override
-	public int compareTo(pack m) {
-		return (this.w > m.w) ? 1 : -1;
-	}
 
 	@Override
 	public String toString() {
+
+		System.out.println(Integer.toBinaryString(poz));
+
 		StringBuffer s1 = new StringBuffer();
-		for(int i=1;i<9;i++){
-			s1.append( printPoint(i));
-			if (i<8) s1.append(" ");
+		for (int i = 1; i < 9; i++) {
+			s1.append(printPoint(i));
+			if (i < 8)
+				s1.append(" ");
 		}
-		//s1.append("\n");
+		// s1.append("\n");
 		return s1.toString();
 	}
-	
+
 	private String printPoint(int n) {
 		int w1 = this.w, h1 = this.h, d1 = this.d;
-		if ((poz & 0x1)>0){d1=this.w;w1=this.d;}
-		if ((poz & 0x2)>0){h1=this.w;w1=this.h;}
-		if ((poz & 0x4)>0){h1=this.d;d1=this.h;}
+		int i;
+		if ((poz & 0x1) > 0) {
+			i = d1;
+			d1 = w1;
+			w1 = i;
+		}
+		if ((poz & 0x2) > 0) {
+			i = h1;
+			h1 = w1;
+			w1 = i;
+		}
+		if ((poz & 0x4) > 0) {
+			i = h1;
+			h1 = d1;
+			d1 = i;
+		}
 		switch (n) {
 		case 1:
 			h1 = 0;
@@ -158,15 +187,17 @@ public class pack implements Comparable<pack> {
 		default:
 			break;
 		}
-		return "(" + formatMe((double)(this.myPoint.x + w1) / 100) + " "
-				+ formatMe((double)(this.myPoint.y + d1) / 100) + " "
-				+ formatMe((double)(this.myPoint.z + h1) / 100) + ")";
+		return "(" + formatMe((double) (this.myPoint.x + w1) / 100) + " "
+				+ formatMe((double) (this.myPoint.y + d1) / 100) + " "
+				+ formatMe((double) (this.myPoint.z + h1) / 100) + ")";
 	}
-	private String formatMe(double d1){
-		//DecimalFormat decimalFormat = new DecimalFormat("0.00", decimalFormatSymbols);
-		DecimalFormat a= new DecimalFormat("0.00");
-		return a.format(d1);  
 
-		//return System.out.format("%.2f%n", d1);
+	private String formatMe(double d1) {
+		// DecimalFormat decimalFormat = new DecimalFormat("0.00",
+		// decimalFormatSymbols);
+		DecimalFormat a = new DecimalFormat("0.00");
+		return a.format(d1);
+
+		// return System.out.format("%.2f%n", d1);
 	}
 }

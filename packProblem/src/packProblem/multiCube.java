@@ -3,7 +3,7 @@ package packProblem;
 //import java.awt.Point;
 import java.util.ArrayList;
 
-public class multiCube extends pack {
+public class multiCube extends pack implements Comparable<multiCube> {
 
 	private double V1 = 0;// clear V
 	private int w1 = 0, h1 = 0, d1 = 0;
@@ -61,8 +61,21 @@ public class multiCube extends pack {
 		}
 
 	}
-	public ArrayList<point> getFreePoints(){
-		return myFreePoints;
+	
+	public multiCube setNewCube(){
+		multiCube m1 = new multiCube(getW(), getD(), getH(), getID());
+		for (int i = 0; i < myPacks.size(); i++) {
+			m1.myPacks.add(this.myPacks.get(i));
+		}
+		//myFreePoints
+		for (int i = 0; i < myFreePoints.size(); i++) {
+			m1.myFreePoints.add(this.myFreePoints.get(i));
+		}
+		return m1;
+	}
+	
+	public int freePointsCo(){
+		return myFreePoints.size();
 	}
 	@Override
 	public String toString() {
@@ -75,5 +88,13 @@ public class multiCube extends pack {
 		}
 
 		return s1.toString();
+	}
+	public double vK (){
+		return (V1/w1*d1*h1)*100;
+	}
+
+	@Override
+	public int compareTo(multiCube o) {
+		return (this.vK() > o.vK()) ? 1 : 0;
 	}
 }

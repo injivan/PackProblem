@@ -19,17 +19,22 @@ public class packit {
 			while ((sOut = br.readLine()) != null)  {
 				readLine(sOut);
 			}
-			//algorithm0();
+			algorithm0();
 			// 1 algorithm 1 
-			algorithm1();
+			//algorithm1();
 			
-			printOut();
+			//printOut();
 			System.out.println("ok");
 	     } catch (IOException e) {
 	    	 System.out.println("Error");
 		} 
 	}
 	private static void algorithm0(){
+		int a = 3;
+		System.out.println(Integer.toBinaryString(a) );
+		a=a^0x2;
+		System.out.println(Integer.toBinaryString(a) );
+		
 //		multiCube m = new multiCube( 4000, 4000, 4000,0); 
 //		if (m.add(myPacks.get(0))==true){
 //			 m.add(myPacks.get(1));
@@ -37,15 +42,8 @@ public class packit {
 		
 	}
 	private static void algorithm1(){
-		ArrayList<Integer> ar1=new ArrayList<Integer>();
-		//for (int i = 0; i < 10; i++) {
-			ar1.add(10);			
-		//} 
-		do {
-			int dd=ar1.get(0);
-			ar1.remove(0);
-			System.out.println(" " + dd );
-		} while (ar1.size()>0);
+		 
+		
 	}
 
 	private static void printOut(){
@@ -64,12 +62,12 @@ public class packit {
 			throw new IOException();
 		}
 		try {
-			d = (int) (Double.parseDouble(aS[1]) * 100);
+			w = (int) (Double.parseDouble(aS[1]) * 100);
 		} catch (Exception e) {
 			throw new IOException();
 		}
 		try {
-			w = (int) (Double.parseDouble(aS[2]) * 100);
+			d = (int) (Double.parseDouble(aS[2]) * 100);
 		} catch (Exception e) {
 			throw new IOException();
 		}

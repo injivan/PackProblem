@@ -18,6 +18,8 @@ public class alg1 {
 		pack first;
 		multiCube mk1; 
 		packs = el;
+		
+		
 		first = findMax_XY(false);
 		if (first != null) {
 			d = first.getD();
@@ -31,9 +33,19 @@ public class alg1 {
 		mk1 = new multiCube( w, d, h, 0);
 		mk1.add(first, 0);
 		queMC.add(mk1);		
-		do{
-			// wzemam  mowite to`ki za dostyp 
+		while (! queMC.isEmpty()){
+			multiCube mk2 = queMC.poll();         
+			//get then access points count
+			int frP = mk1.freePointsCo();
 			// probwam da dobawqm paketi
+			for (int i = 0; i < frP; i++) {
+				for (int j = 0; j < packs.size(); j++) {						
+					multiCube mk3 = mk2.setNewCube();
+					mk3.add(packs.get(j).getNewPack(), i);
+				}
+			}
+			
+			
 			//kogato we`e nemo[e da se dobawqt paketi
 			//trebwa da izbera nowi now kub
 		}while (true);
