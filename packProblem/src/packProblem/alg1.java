@@ -33,24 +33,45 @@ public class alg1 {
 		mk1 = new multiCube( w, d, h, 0);
 		mk1.add(first, 0);
 		queMC.add(mk1);		
+		multiCube cubMaxV = mk1.setNewCube();
 		while (! queMC.isEmpty()){
-			multiCube mk2 = queMC.poll();         
+			multiCube mk2 = queMC.poll();
+			if (cubMaxV.compareTo(mk2)==0){
+				cubMaxV=mk2.setNewCube();}
+			if (cubMaxV.vK()>90) break;
 			//get then access points count
 			int frP = mk1.freePointsCo();
 			// probwam da dobawqm paketi
 			for (int i = 0; i < frP; i++) {
-				for (int j = 0; j < packs.size(); j++) {						
-					multiCube mk3 = mk2.setNewCube();
-					mk3.add(packs.get(j).getNewPack(), i);
+				for (int j = 0; j < packs.size(); j++) {
+					if (packs.get(j).getUsed() == 0) {
+						multiCube mk3_1 = mk2.setNewCube();
+						multiCube mk3_2 = mk2.setNewCube();
+						multiCube mk3_3 = mk2.setNewCube();
+						pack pNew1 = packs.get(j).getNewPack();
+						pack pNew2 = packs.get(j).getNewPack();
+						pack pNew3 = packs.get(j).getNewPack();
+						pNew1.rotate(1);
+						mk3_1.add(pNew1, i);
+						mk3_2.add(pNew2, i);
+						mk3_3.add(pNew3, i);
+						queMC.add(mk3_1);
+						queMC.add(mk3_2);
+						queMC.add(mk3_3);
+					}
 				}
 			}
-			
-			
 			//kogato we`e nemo[e da se dobawqt paketi
+			ArrayList<pack> usedPacks =  cubMaxV.getPacks();
+			
+			for(int i=0;i<usedPacks.size();i++){
+				pack tmpPack = usedPacks.get(i);
+				int j=tmpPack.getID();
+				tmpPack.setUsed(1);
+				packs.add(j, tmpPack);
+			}
 			//trebwa da izbera nowi now kub
-		}while (true);
-		
-		
+		}
 	}
 
 	private pack findMax_XY(Boolean fX) {

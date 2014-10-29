@@ -86,11 +86,13 @@ public class multiCube extends pack implements Comparable<multiCube> {
 			if (i < myPacks.size() - 1)
 				s1.append(" ");
 		}
-
 		return s1.toString();
 	}
 	public double vK (){
 		return (V1/w1*d1*h1)*100;
+	}
+	public ArrayList<pack> getPacks() {
+		return myPacks;
 	}
 
 	@Override

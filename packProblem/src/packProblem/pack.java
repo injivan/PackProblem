@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
  * 
  */
 public class pack {
-	private int w, d, h, id;
+	private int w, d, h, id, used=0;
 	private point myPoint;
 	private int poz;// 001 0x1 rotateRight
 					// 010 0x2 pushRight
@@ -25,12 +25,15 @@ public class pack {
 	private void makecube() {
 		poz = 0;
 		if (w < d) {
+			poz = poz | 0x1;
 			rotateRight(w, d);
 		}
 		if (w < h) {
+			poz = poz | 0x2;
 			pushRight(w, h);
 		}
 		if (d < h) {
+			poz = poz | 0x4;
 			pushUp(d, h);
 		}
 	}
@@ -43,26 +46,36 @@ public class pack {
 		return p;
 	}
 	private void rotateRight(int a, int b) {
-		poz = poz ^ 0x1;
-		if (a < b)
-			poz = poz | 0x1;
 		d = a;
 		w = b;
 	}
 
 	private void pushRight(int a, int b) {
-		poz = poz ^ 0x2;
-		if (a < b)
-			poz = poz | 0x2;
 		h = a;
 		w = b;
 
 	}
-
+	public void rotate(int poz) {
+		int i =0;
+		switch (poz) {
+		case 1:
+		 	i = poz & 0x1;
+			rotateRight(w, d);
+			break;
+		case 2:
+			i = poz & 0x2;
+			pushRight(w, h);
+			break;
+		case 3:
+			i = poz & 0x4;
+			pushUp(d, h);
+			break;
+		default:
+			break;
+		}
+		poz = poz ^ i;
+	}
 	private void pushUp(int a, int b) {
-		poz = poz ^ 0x4;
-		if (a < b)
-			poz = poz | 0x4;
 		h = a;
 		d = b;
 	}
@@ -89,6 +102,13 @@ public class pack {
 
 	public void setH(int h) {
 		this.h = h;
+	}
+	public int getUsed() {
+		return used;
+	}
+
+	public void setUsed(int h) {
+		this.used = h;
 	}
 
 	// public int getX() {
