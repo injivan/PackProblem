@@ -127,7 +127,7 @@ public class pack {
 	}
 
 	public double getV() {
-		return (w * d * h);
+		return (double) w * d * h ;
 	}
 
 	public void setX(int x) {

@@ -30,15 +30,7 @@ public class packit {
 		} 
 	}
 	private static void algorithm0(){
-		int a = 3;
-		System.out.println(Integer.toBinaryString(a) );
-		a=a^0x2;
-		System.out.println(Integer.toBinaryString(a) );
-		
-//		multiCube m = new multiCube( 4000, 4000, 4000,0); 
-//		if (m.add(myPacks.get(0))==true){
-//			 m.add(myPacks.get(1));
-//		}
+		 alg1 alg1 = new alg1(myPacks);
 		
 	}
 	private static void algorithm1(){
