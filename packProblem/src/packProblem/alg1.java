@@ -13,9 +13,9 @@ public class alg1 {
 	 * put in this space run the full position tray function
 	 */
 	public alg1(ArrayList<pack> el) {
-		int w = 0, d = 0, h = 0;
+		int w = 0, d = 0, h = 0, h1 = 0;
 		pack first;
-		
+
 		packs = el;
 
 		first = findMax_XY(false);
@@ -27,21 +27,24 @@ public class alg1 {
 			w = first.getW();
 			h = first.getH();
 		}
-		do{
-			testme(w, d, h, first);
-			//get new first 
+		do {
+			testme(w, d, h, h1, first);
+			// get new first
 			first = findMax_XY(true);
+			h1 = h;
 			if (first != null) {
 				h = first.getH();
-			}else{break;}
-			
-		}while (true);
-		
-		 
-		
+			} else {
+				break;
+			}
+
+		} while (true);
+
 	}
-	private void testme(int w, int d, int h, pack first){
+
+	private void testme(int w, int d, int h, int h1, pack first) {
 		multiCube mk1 = new multiCube(w, d, h, 0);
+		mk1.setZ(h1);
 		mk1.add(first);
 		queMC.add(mk1);
 		multiCube cubMaxV = mk1.setNewCube();
@@ -75,6 +78,7 @@ public class alg1 {
 						queMC.add(mk3_3);
 					}
 				}
+				mk2.remuvePoint();
 			}
 		}
 		// kogato we`e nemo[e da se dobawqt paketi
@@ -82,14 +86,14 @@ public class alg1 {
 
 		for (int i = 0; i < usedPacks.size(); i++) {
 			pack tmpPack = usedPacks.get(i);
-			int j = tmpPack.getID();
+			int j = tmpPack.getID() - 1;
 			tmpPack.setUsed(1);
 			packs.remove(j);
 			packs.add(j, tmpPack);
 		}
 		// trebwa da izbera nowi now kub
 	}
-	 
+
 	private pack findMax_XY(Boolean fX) {
 		int m_x = 0, j = -1, z;
 		for (int i = 0; i < packs.size(); i++) {

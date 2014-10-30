@@ -5,48 +5,44 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
- 
+
 public class packit {
 	private static ArrayList<pack> myPacks = new ArrayList<pack>();
 
 	public static void main(String[] args) {
-		String sOut="";
-	     try {
+		String sOut = "";
+		try {
 			System.setIn(new FileInputStream("in.txt"));
 			// Open the standard input
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			
-			while ((sOut = br.readLine()) != null)  {
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					System.in));
+
+			while ((sOut = br.readLine()) != null) {
 				readLine(sOut);
 			}
+
 			algorithm0();
-			// 1 algorithm 1 
-			//algorithm1();
-			
-			//printOut();
+
+			printOut();
 			System.out.println("ok");
-	     } catch (IOException e) {
-	    	 System.out.println("Error");
-		} 
-	}
-	private static void algorithm0(){
-		 alg1 alg1 = new alg1(myPacks);
-		
-	}
-	private static void algorithm1(){
-		 
-		
+		} catch (IOException e) {
+			System.out.println("Error");
+		}
 	}
 
-	private static void printOut(){
-		for (int i=0; i<myPacks.size();i++){
-			pack p= myPacks.get(i);
-			System.out.println( p.toString());
+	private static void algorithm0() {
+		alg1 alg1 = new alg1(myPacks);
+	}
+
+	private static void printOut() {
+		for (int i = 0; i < myPacks.size(); i++) {
+			pack p = myPacks.get(i);
+			System.out.println(p.toString());
 		}
 	}
 
 	private static void readLine(String myLine) throws IOException {
-		int id,d,w,h;
+		int id, d, w, h;
 		String[] aS = myLine.split("[ ]");
 		try {
 			id = Integer.parseInt(aS[0]);

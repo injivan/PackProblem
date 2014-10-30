@@ -8,8 +8,8 @@ public class multiCube extends pack implements Comparable<multiCube> {
 	private double V1 = 0;// clear V
 	private int w1 = 0, h1 = 0, d1 = 0;
 
-	private ArrayList<Integer> packsID = new ArrayList<Integer>();
-	// private point myDims;
+	//private ArrayList<Integer> packsID = new ArrayList<Integer>();
+	//private point myDims;
 	//private point myPoint;
 	private ArrayList<pack> myPacks = new ArrayList<pack>();
 	private ArrayList<point> myFreePoints = new ArrayList<point>();
@@ -23,9 +23,8 @@ public class multiCube extends pack implements Comparable<multiCube> {
 	}
 
 	public void add(pack p) {
-
 		point point = myFreePoints.get(0);
-		//myFreePoints.remove(0);
+		myFreePoints.remove(0);
 		if (point.x + p.getW() <= this.getW()) {
 			if (point.y + p.getD() <= this.getD()) {
 				if (point.z + p.getH() <= this.getH()) {
@@ -82,6 +81,9 @@ public class multiCube extends pack implements Comparable<multiCube> {
 	
 	public int freePointsCo(){
 		return myFreePoints.size();
+	}
+	public void remuvePoint() {
+		myFreePoints.remove(0);
 	}
 	@Override
 	public String toString() {

@@ -145,7 +145,7 @@ public class pack {
 	@Override
 	public String toString() {
 
-		System.out.println(Integer.toBinaryString(poz));
+		//System.out.println(Integer.toBinaryString(poz));
 
 		StringBuffer s1 = new StringBuffer();
 		for (int i = 1; i < 9; i++) {
