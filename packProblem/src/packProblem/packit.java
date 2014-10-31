@@ -12,7 +12,7 @@ public class packit {
 	public static void main(String[] args) {
 		String sOut = "";
 		try {
-			System.setIn(new FileInputStream("in.txt"));
+			System.setIn(new FileInputStream("test1.txt"));
 			// Open the standard input
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					System.in));
@@ -26,6 +26,7 @@ public class packit {
 			printOut();
 			System.out.println("ok");
 		} catch (IOException e) {
+			e.printStackTrace();
 			System.out.println("Error");
 		}
 	}

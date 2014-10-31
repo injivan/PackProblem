@@ -14,20 +14,21 @@ public class multiCube extends pack implements Comparable<multiCube> {
 	private ArrayList<pack> myPacks = new ArrayList<pack>();
 	private ArrayList<point> myFreePoints = new ArrayList<point>();
 
-	public multiCube(int w, int d, int h, int id) {
+	public multiCube(int w, int d, int h, int id, int z) {
 		super(w, d, h, id);
 		w1 = w;
 		d1 = d;
 		h1 = h;
-		myFreePoints.add(new point(0, 0, 0));
+		myFreePoints.add(new point(0, 0,  z));
 	}
 
-	public void add(pack p) {
+	public boolean add(pack p) {
+		boolean flIn = false;
 		point point = myFreePoints.get(0);
 		myFreePoints.remove(0);
 		if (point.x + p.getW() <= this.getW()) {
 			if (point.y + p.getD() <= this.getD()) {
-				if (point.z + p.getH() <= this.getH()) {
+				if ( p.getH() <= this.getH()) {
 					// add the pack
 					p.setX(point.x);
 					p.setY(point.y);
@@ -41,15 +42,15 @@ public class multiCube extends pack implements Comparable<multiCube> {
 					point point3 = new point(0, 0, 0);
 					point1.x = point.x + p.getW();
 					point1.y = point.y;
-					point1.z = point.z;
+					point1.z = this.getZ();
 					myFreePoints.add(point1);
 					point2.x = point.x + p.getW();
 					point2.y = point.y + p.getD();
-					point2.z = point.z;
+					point2.z = this.getZ();
 					myFreePoints.add(point2);
 					point3.x = point.x;
 					point3.y = point.y + p.getD();
-					point3.z = point.z;
+					point3.z = this.getZ();
 					myFreePoints.add(point3);
 
 					// new obem V1
@@ -59,15 +60,15 @@ public class multiCube extends pack implements Comparable<multiCube> {
 						w1 = (point.x + p.getW());
 					if ((point.y + p.getD()) > d1)
 						d1 = (point.y + p.getD());
-					
+					flIn=true;
 				}
 			}
 		}
-
+		return flIn;
 	}
 	
 	public multiCube setNewCube(){
-		multiCube m1 = new multiCube(getW(), getD(), getH(), getID());
+		multiCube m1 = new multiCube(getW(), getD(), getH(), getID() ,this.getZ() );
 		for (int i = 0; i < myPacks.size(); i++) {
 			m1.myPacks.add(this.myPacks.get(i));
 		}

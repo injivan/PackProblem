@@ -43,6 +43,7 @@ public class pack {
 		p.myPoint.y = this.myPoint.y;
 		p.myPoint.z = this.myPoint.z;
 		p.poz = this.poz;
+		p.used= this.used;
 		return p;
 	}
 	private void rotateRight(int a, int b) {
@@ -111,17 +112,17 @@ public class pack {
 		this.used = h;
 	}
 
-	// public int getX() {
-	// return x;
-	// }
+	/*public int getX() {
+		return x;
+	}*/
 	//
 	// public int getY() {
 	// return y;
 	// }
 	//
-	// public int getZ() {
-	// return z;
-	// }
+	public int getZ() {
+		return this.myPoint.z;
+	}
 	public int getID() {
 		return id;
 	}

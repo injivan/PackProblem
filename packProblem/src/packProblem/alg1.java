@@ -31,7 +31,7 @@ public class alg1 {
 			testme(w, d, h, h1, first);
 			// get new first
 			first = findMax_XY(true);
-			h1 = h;
+			h1 =h1 + h;
 			if (first != null) {
 				h = first.getH();
 			} else {
@@ -43,13 +43,15 @@ public class alg1 {
 	}
 
 	private void testme(int w, int d, int h, int h1, pack first) {
-		multiCube mk1 = new multiCube(w, d, h, 0);
+		multiCube mk1 = new multiCube(w, d, h, 0, h1);
 		mk1.setZ(h1);
+		first.setUsed(1);
 		mk1.add(first);
 		queMC.add(mk1);
 		multiCube cubMaxV = mk1.setNewCube();
 		while (!queMC.isEmpty()) {
 			multiCube mk2 = queMC.poll();
+			System.out.println(" queMC.poll() " + mk2.getH() ); 
 			if (cubMaxV.compareTo(mk2) == 0) {
 				cubMaxV = mk2.setNewCube();
 			}
@@ -70,12 +72,15 @@ public class alg1 {
 						pNew1.rotate(1);
 						pNew2.rotate(2);
 						pNew3.rotate(3);
-						mk3_1.add(pNew1);
-						mk3_2.add(pNew2);
-						mk3_3.add(pNew3);
-						queMC.add(mk3_1);
-						queMC.add(mk3_2);
-						queMC.add(mk3_3);
+						if (mk3_1.add(pNew1)==true){
+							queMC.add(mk3_1);
+						}
+						if (mk3_2.add(pNew2)==true){
+							queMC.add(mk3_2);
+						}
+						if (mk3_3.add(pNew3)==true){
+							queMC.add(mk3_3);
+						}
 					}
 				}
 				mk2.remuvePoint();
